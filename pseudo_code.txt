@@ -1,0 +1,50 @@
+START
+
+IMPORT the random module
+
+DEFINE three lists of words:
+    - easy_words = [‘apple’, ‘train’, ‘tiger’, ‘money’, ‘pakistan’]
+    - medium_words = [‘computer’, ‘keyboard’, ‘mouse’, ‘monitor’, ‘internet’]
+    - hard_words = [‘programming’, ‘development’, ‘algorithm’, ‘functionality’, ‘optimization’]
+
+DISPLAY "Welcome to Password Guessing Game!"
+DISPLAY "Choose a difficulty level: 1. Easy 2. Medium 3. Hard"
+
+PROMPT user to "Enter Difficulty:"
+CONVERT input to lowercase → level
+
+IF level is 'easy':
+    SELECT random word from easy_words → secret
+ELSE IF level is 'medium':
+    SELECT random word from medium_words → secret
+ELSE IF level is 'hard':
+    SELECT random word from hard_words → secret
+ELSE:
+    DISPLAY "Invalid difficulty level."
+    SELECT random word from easy_words → secret
+
+SET attempts to 0
+
+DISPLAY "Guess the password"
+
+LOOP indefinitely:
+    PROMPT user to "Enter your guess:"
+    INCREMENT attempts by 1
+
+    IF guess == secret:
+        DISPLAY "Congratulations! You guessed the password '[guess]' in [attempts] attempts."
+        BREAK loop
+
+    INITIALIZE empty string hint
+
+    FOR each character position i in the secret word:
+        IF i is within guess length AND guess[i] is not equal to secret[i]:
+            APPEND guess[i] to hint
+        ELSE:
+            APPEND '_' to hint
+
+    DISPLAY "Hint: [hint]"
+
+DISPLAY "Game Over!"
+
+END
